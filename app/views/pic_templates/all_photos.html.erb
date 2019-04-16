@@ -1,0 +1,33 @@
+<h1>All Photos</h1>
+<!--this is outside the loop-->
+
+<a href = "/photos/new">Add a New Photo</a>
+
+<!--creates a break between the photos and the link-->
+<br>
+
+<!--we run a loop over each item in @photo_list, recall @photo_list is Photo.all, which is like an array-->
+
+<% @photo_list.each do |pic| %>
+
+    <!--actually display image -->
+    <img src = <%= pic.source %>>
+    
+    <ul>
+        <li>
+            <!--we want the specific ID of the photo-->
+            <% @photo_id = pic.id %>
+            <!--note that we need to summon the photo ID to do the show details-->
+            <a href = "/photos/<%=@photo_id %>">Show Details</a>
+        </li>
+        <li>
+            <!--note that href only looks for the "" as delimiters-->
+            <a href = "/photos/<%= @photo_id %>/edit">Edit</a>
+        </li>
+        <li>    
+            <a href = "/delete_photo/<%= @photo_id %>">Delete</a>
+        </li>
+    </ul>
+
+<!--we don't need to see the loop, we just need to see the output-->
+<% end %>

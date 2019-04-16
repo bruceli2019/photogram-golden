@@ -1,0 +1,27 @@
+<h1>Edit Photo <%= @edit_photo_id %> </h1>
+
+<!--recall action should provide the relative link to the next page after we hit submit-->
+<form action = "/update_photo/<%= @edit_photo_id %>">
+    <label for = "img_url">
+        Image URL
+    </label>
+    
+    <!--id labels the input as the label, type denotes that the value is text, name is what the key in the hash will be, value is the preinputed value, here from the hash extracted in pictures_controller-->
+    
+    <!--we need the quotation marks around value-->
+    <input id = "img_url" type = "text" name = "edit_img_url" value = "<%= @photo_url %>">
+    
+    <br>
+    
+    <label for = "caption">
+        Caption
+    </label>
+    
+    <!--we need the quotation marks around value-->
+    <input id = "caption" type = "text" name = "edit_img_caption" value = "<%= @photo_caption %>">
+    
+    <br>
+    
+    <button>Update Photo</button>
+    
+</form>

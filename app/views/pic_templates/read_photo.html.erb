@@ -1,0 +1,50 @@
+<h1>Photo Details</h1>
+
+<p>
+    <!--get the caption-->
+    <!--recall that Photos have an id, source, caption, created_at, updated_at-->
+    <%= @photo_hash["caption"] %>
+</p>
+    <!--actually get the photo-->
+    <img src = <%= @photo_hash["source"] %>> 
+    
+<p>
+   <!--get the updated date, recall Ruby time is -->
+    <!--%a is the  abbrev. date, %d is the numerical date, %b is the abbrev. month, %Y is the full year-->
+    
+    <%  time_updated = @photo_hash["updated_at"]
+        time_today = Time.now
+        # below is in seconds
+        time_difference = time_today - time_updated
+        # 60 seconds in min, 60 min in hr, 24 hr in day
+        time_difference_days = (time_difference / (60*60*24)).round
+    %>
+    
+    <%=
+        #sole purpose of this statement is to manage the "s"
+        if time_difference_days == 1
+            result = "1 day ago"
+        else
+            #convert this to string
+            result = time_difference_days.to_s + " days ago"
+            
+        #remember all if statements need end!
+        end
+        
+        #actually print the result, previous results simply assigns the result
+        result
+    %>
+</p>
+
+<ul>
+    <li>
+        <a href ="/photos">Go Back</a>
+    </li>
+    <li>
+        <!--note that href only looks for the "" as delimiters-->
+        <a href = "/photos/<%= @curr_photo_id %>/edit">Edit</a>
+    </li>
+    <li>    
+        <a href = "/delete_photo/<%= @curr_photo_id %>">Delete</a>
+    </li>
+</ul>
